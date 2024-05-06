@@ -34,6 +34,19 @@
         padding: 10px;
         margin: 10px;
         }
+
+        .input{
+
+        width: 400px;
+        padding: 10px;
+        border-radius: 5px;
+        }
+        button{
+        margin-left: 3px;
+         }
+
+
+
     </style>
 </head>
 <body>
@@ -43,24 +56,31 @@
     </div>
 
     <div class="action-container">
-        <input type="text" id="input-todo" style="width: 300px;">
-        
-    &nbsp;  &nbsp;
+        <form>
+            <input type="text" id="input-todo" placeholder="Enter your name" class= "input">
+        </form>
+
         <button type="button" onclick="add()" style="padding: 5px;">
             Add
         </button>
     </div>
 
     <script>
-        const todoList = []
+        let todoList = [];
+        const listfromlocalstorage = localStorage.getItem("todoList");
+        if(listfromlocalstorage){
+            todoList = JSON.parse(listfromlocalstorage);
+            renderToDoList();
+        }
 
         function add()
         {
-            const inputElement = document.getElementById("input-todo")
-            todoList.push(inputElement.value)
-            inputElement.value=" "
+            const inputElement = document.getElementById("input-todo");
+            todoList.push(inputElement.value);
+           localStorage.setItem("todoList",JSON.stringify(todoList));
+            inputElement.value=" ";
             
-            renderToDoList()
+            renderToDoList();
         }
 
         function renderToDoList()
@@ -80,7 +100,4 @@
 </body>
 </html>
 
-
-       
-
-   
+    
