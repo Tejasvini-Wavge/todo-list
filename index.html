@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 34</title>
+    <style>
+        .action-container
+        {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 20px;
+            margin: 10px;
+        }
+        .list-container
+        {
+        display: block;
+        margin:  0 auto;
+        height: 300px;
+        width: 500px;
+        border: 1px solid gray;
+        border-radius:10PX;
+        padding: 15px;
+        background-color: rgb(89, 7, 7);
+        overflow-y: scroll;
+        font-size: 20px;
+        }
+
+        .todo-item
+        {
+        background-color:white;
+        border-radius:10PX;
+        padding: 10px;
+        margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="list-container" id="list-container">
+        <div class="todo-item">To Do List</div>
+    </div>
+
+    <div class="action-container">
+        <input type="text" id="input-todo" style="width: 300px;">
+        
+    &nbsp;  &nbsp;
+        <button type="button" onclick="add()" style="padding: 5px;">
+            Add
+        </button>
+    </div>
+
+    <script>
+        const todoList = []
+
+        function add()
+        {
+            const inputElement = document.getElementById("input-todo")
+            todoList.push(inputElement.value)
+            inputElement.value=" "
+            
+            renderToDoList()
+        }
+
+        function renderToDoList()
+        {
+            const listContainer = document.getElementById("list-container")
+            listContainer.innerHTML = " "
+
+            for(const todoItem of todoList)
+            {
+                listContainer.innerHTML += `<div class="todo-item">
+                    <input type="checkbox"/>
+                    ${todoItem} </div>`;
+            }
+        }
+    </script>
+    
+</body>
+</html>
+
+
+       
+
+   
